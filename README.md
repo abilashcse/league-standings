@@ -1,3 +1,3 @@
-# Premier League standings
+#League standings
 
-Android app that displays the latest premier league standings
+Android app that displays the league standings
