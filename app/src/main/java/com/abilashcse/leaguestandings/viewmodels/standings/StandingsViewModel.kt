@@ -10,11 +10,10 @@ import com.abilashcse.leaguestandings.data.model.StandingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-//https://api.football-data.org/v2/competitions/2013/standings
 @HiltViewModel
 class StandingsViewModel @Inject constructor(var repository: StandingsRepository): ViewModel() {
-    private val _teams = MutableLiveData<List<Standing>>().apply { value = emptyList() }
-    val teams: LiveData<List<Standing>> = _teams
+    private val _standings = MutableLiveData<StandingsResponse>()
+    val standings: LiveData<StandingsResponse> = _standings
 
     private val _isViewLoading = MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
@@ -31,11 +30,11 @@ class StandingsViewModel @Inject constructor(var repository: StandingsRepository
 
             override fun onSuccess(data: StandingsResponse) {
                 _isViewLoading.value = false
-                if (data.standings.isEmpty()) {
+                if (data.standings[0].table.isEmpty()) {
                     _isEmptyList.value = true
 
                 } else {
-                    _teams.value = data.standings
+                    _standings.value = data
                 }
             }
 
