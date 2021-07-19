@@ -51,6 +51,8 @@ class StandingsFragment : Fragment() {
             this.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
+        mainFragmentView.header.headerLayout.visibility = View.INVISIBLE
+        mainFragmentView.dividerLine.visibility = View.INVISIBLE
         return mainFragmentView.root
     }
 
@@ -64,6 +66,8 @@ class StandingsFragment : Fragment() {
             DLog.dLog(LOG_TAG,"Standings table size = ${it.standings[0].table.size}")
             standingsAdapter = StandingsTableAdapter(it.standings[0].table)
             mainFragmentView.tableList.adapter = standingsAdapter
+            mainFragmentView.header.headerLayout.visibility = View.VISIBLE
+            mainFragmentView.dividerLine.visibility = View.VISIBLE
         })
         viewModel.getStandings(2013)
     }

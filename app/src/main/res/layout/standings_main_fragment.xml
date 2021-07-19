@@ -45,6 +45,7 @@
             layout="@layout/table_header" />
 
         <View
+            android:id="@+id/divider_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="10dp"
@@ -59,4 +60,5 @@
             tools:listitem="@layout/team_card" />
 
     </LinearLayout>
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
