@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.standings.StandingsFragment">
+    >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_gutter"
@@ -54,8 +54,8 @@
         app:layout_constraintTop_toBottomOf="@+id/message">
 
         <include
-            android:id="@+id/header"
-            layout="@layout/table_header" />
+            android:id="@+id/recent_header"
+            layout="@layout/recent_table_header" />
 
         <View
             android:id="@+id/divider_line"
@@ -66,12 +66,12 @@
             android:background="@color/purple_700" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/table_list"
-            android:layout_width="wrap_content"
+            android:id="@+id/recent_table_list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/team_card" />
+            tools:listitem="@layout/recent_team_card" />
 
     </LinearLayout>
 

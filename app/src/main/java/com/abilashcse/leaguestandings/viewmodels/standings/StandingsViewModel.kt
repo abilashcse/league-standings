@@ -5,24 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.abilashcse.leaguestandings.data.api.APICallback
 import com.abilashcse.leaguestandings.data.api.StandingsResponse
-import com.abilashcse.leaguestandings.data.model.Standing
-import com.abilashcse.leaguestandings.data.model.StandingsRepository
+import com.abilashcse.leaguestandings.data.model.standings.StandingsRepository
+import com.abilashcse.leaguestandings.viewmodels.LSBaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class StandingsViewModel @Inject constructor(var repository: StandingsRepository): ViewModel() {
+class StandingsViewModel @Inject constructor(var repository: StandingsRepository): LSBaseViewModel() {
     private val _standings = MutableLiveData<StandingsResponse>()
     val standings: LiveData<StandingsResponse> = _standings
-
-    private val _isViewLoading = MutableLiveData<Boolean>()
-    val isViewLoading: LiveData<Boolean> = _isViewLoading
-
-    private val _onMessageError = MutableLiveData<Any>()
-    val onMessageError: LiveData<Any> = _onMessageError
-
-    private val _isEmptyList = MutableLiveData<Boolean>()
-    val isEmptyList: LiveData<Boolean> = _isEmptyList
 
     fun getStandings(competitionId: Int) {
         _isViewLoading.value = true

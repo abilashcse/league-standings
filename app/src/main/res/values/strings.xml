@@ -5,4 +5,5 @@
     <string name="match_draw">D</string>
     <string name="match_lost">L</string>
     <string name="points">Pts</string>
+    <string name="recent_month">Recent Wins in 30 days</string>
 </resources>

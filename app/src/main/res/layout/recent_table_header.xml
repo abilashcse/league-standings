@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/header_layout"
+    >
+
+    <TextView
+        android:id="@+id/recent_season_name"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:text="@string/recent_month"
+        tools:text="Recent Month"/>
+    <View
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        tools:background="@color/black"/>
+
+    <TextView
+        android:id="@+id/recent_match_won"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:text="@string/match_won" />
+    <TextView
+        android:id="@+id/recent_match_draw"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/match_draw" />
+    <TextView
+        android:id="@+id/recent_match_lost"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/red"
+        android:text="@string/match_lost" />
+
+</LinearLayout>
