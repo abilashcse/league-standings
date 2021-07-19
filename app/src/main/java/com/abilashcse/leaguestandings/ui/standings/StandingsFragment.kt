@@ -68,6 +68,7 @@ class StandingsFragment : Fragment() {
             mainFragmentView.tableList.adapter = standingsAdapter
             mainFragmentView.header.headerLayout.visibility = View.VISIBLE
             mainFragmentView.dividerLine.visibility = View.VISIBLE
+            mainFragmentView.progressLoader.visibility = View.GONE
         })
         viewModel.getStandings(2013)
     }
