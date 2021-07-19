@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LeagueStandings</string>
+    <string name="app_name">League Standings</string>
     <string name="match_played">P</string>
     <string name="match_won">W</string>
     <string name="match_draw">D</string>

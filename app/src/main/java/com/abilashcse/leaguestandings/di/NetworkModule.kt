@@ -16,7 +16,6 @@ import javax.inject.Singleton
 object NetworkModule {
     private const val API_BASE_URL = "https://api.football-data.org/v2/"
 
-
     @Provides
     @Singleton
     fun provideFootballAPIServices(retrofit: Retrofit): FootballAPIServices{

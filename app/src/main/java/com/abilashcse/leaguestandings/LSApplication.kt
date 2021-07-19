@@ -6,7 +6,9 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class LSApplication: Application() {
-    private val LOG_TAG by lazy { "LSApplication" }
+    companion object {
+        const val LOG_TAG=  "LSApplication"
+    }
     override fun onCreate() {
         super.onCreate()
         DLog.dLog(LOG_TAG, "onCreate application")
