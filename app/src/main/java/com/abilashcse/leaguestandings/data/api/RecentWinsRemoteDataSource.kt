@@ -1,5 +1,6 @@
 package com.abilashcse.leaguestandings.data.api
 
+import com.abilashcse.leaguestandings.MainActivity
 import com.abilashcse.leaguestandings.data.model.recentwins.RecentWinsDataSource
 import com.abilashcse.logger.DLog
 import org.json.JSONObject
@@ -15,7 +16,7 @@ class RecentWinsRemoteDataSource @Inject constructor(private val service: Footba
 
     override fun getTeams(competitionId: Int, callback: APICallback<TeamsResponse>) {
         DLog.dLog("getTeams for competitionId $competitionId")
-        getTeamsCall = service.teams("e66c32d50df447358ea63b34235dc8c3",competitionId)
+        getTeamsCall = service.teams(MainActivity.API_TOKEN,competitionId)
         getTeamsCall?.enqueue(object : Callback<TeamsResponse> {
             override fun onResponse(call: Call<TeamsResponse>, response: Response<TeamsResponse>) {
                 response.body()?.let {
@@ -45,7 +46,7 @@ class RecentWinsRemoteDataSource @Inject constructor(private val service: Footba
         toDate: String,
         callback: APICallback<MatchResponse>
     ) {
-        getMatchesCall = service.matches("e66c32d50df447358ea63b34235dc8c3",competitionId,
+        getMatchesCall = service.matches(MainActivity.API_TOKEN,competitionId,
             fromDate, toDate)
         getMatchesCall?.enqueue(object : Callback<MatchResponse> {
             override fun onResponse(call: Call<MatchResponse>, response: Response<MatchResponse>) {

@@ -6,4 +6,6 @@
     <string name="match_lost">L</string>
     <string name="points">Pts</string>
     <string name="recent_month">Recent Wins in 30 days</string>
+    <string name="standings">Standings</string>
+    <string name="recentwins">Recent Wins</string>
 </resources>

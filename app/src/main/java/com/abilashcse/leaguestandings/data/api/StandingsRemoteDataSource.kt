@@ -1,5 +1,6 @@
 package com.abilashcse.leaguestandings.data.api
 
+import com.abilashcse.leaguestandings.MainActivity
 import com.abilashcse.leaguestandings.data.model.standings.StandingDataSource
 import com.abilashcse.logger.DLog
 import org.json.JSONObject
@@ -15,7 +16,7 @@ class StandingsRemoteDataSource @Inject constructor(private val service: Footbal
 
     override fun getStandings(competitionId: Int, callback: APICallback<StandingsResponse>) {
         DLog.dLog("getStandings for competitionId $competitionId")
-        call = service.standings("e66c32d50df447358ea63b34235dc8c3",competitionId)
+        call = service.standings(MainActivity.API_TOKEN,competitionId)
         call?.enqueue(object :Callback<StandingsResponse> {
             override fun onResponse(
                 call: Call<StandingsResponse>,

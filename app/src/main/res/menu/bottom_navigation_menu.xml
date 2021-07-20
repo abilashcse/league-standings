@@ -4,10 +4,10 @@
     android:id="@+id/page_1"
     android:enabled="true"
     android:icon="@android:drawable/btn_star"
-    android:title="Standings"/>
+    android:title="@string/standings"/>
     <item
         android:id="@+id/page_2"
         android:enabled="true"
         android:icon="@android:drawable/btn_plus"
-        android:title="RecentWins"/>
+        android:title="@string/recentwins"/>
 </menu>

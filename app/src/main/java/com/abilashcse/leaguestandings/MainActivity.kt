@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val COMPETITION_ID= 2013
-
+        const val COMPETITION_ID = 2013
+        const val API_TOKEN = "e66c32d50df447358ea63b34235dc8c3"
     }
 }
