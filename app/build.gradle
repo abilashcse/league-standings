@@ -69,10 +69,14 @@ dependencies {
 
     // Testing
     testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$rootProject.mockito_kotlin"
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     androidTestImplementation ("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.androidxTestRules"
 
 }

@@ -2,10 +2,12 @@ package com.abilashcse.leaguestandings.data.api
 
 import com.abilashcse.leaguestandings.data.model.standings.StandingDataSource
 import com.abilashcse.logger.DLog
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+
 
 class StandingsRemoteDataSource @Inject constructor(private val service: FootballAPIServices) :
     StandingDataSource {
@@ -27,6 +29,9 @@ class StandingsRemoteDataSource @Inject constructor(private val service: Footbal
                     } else {
                         callback.onError("Invalid Response")
                     }
+                } ?: run {
+                    val errorJSON = JSONObject(response.errorBody()!!.string())
+                    callback.onError("No response ${errorJSON["message"]}")
                 }
             }
 

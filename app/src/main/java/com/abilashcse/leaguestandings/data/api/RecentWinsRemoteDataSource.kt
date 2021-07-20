@@ -2,6 +2,7 @@ package com.abilashcse.leaguestandings.data.api
 
 import com.abilashcse.leaguestandings.data.model.recentwins.RecentWinsDataSource
 import com.abilashcse.logger.DLog
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +25,9 @@ class RecentWinsRemoteDataSource @Inject constructor(private val service: Footba
                     } else {
                         callback.onError("Invalid Response")
                     }
+                } ?: run {
+                    val errorJSON = JSONObject(response.errorBody()!!.string())
+                    callback.onError("No response ${errorJSON["message"]}")
                 }
             }
 

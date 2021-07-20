@@ -1,6 +1,5 @@
 package com.abilashcse.leaguestandings.viewmodels.recentwins
 
-import android.text.format.DateUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.abilashcse.leaguestandings.data.api.APICallback
@@ -14,7 +13,6 @@ import com.abilashcse.leaguestandings.data.model.recentwins.RecentWinsRepository
 import com.abilashcse.leaguestandings.viewmodels.LSBaseViewModel
 import com.abilashcse.logger.DLog
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -38,8 +36,8 @@ class RecentWinsViewModel @Inject constructor(var repository: RecentWinsReposito
 
             override fun onSuccess(data: TeamsResponse) {
                 if (data.teams.isEmpty()) {
+                    DLog.dLog("Empty Data")
                     _isEmptyList.value = true
-
                 } else {
                     _teams.value = data
                     DLog.dLog("Last updated = ${data.competition.lastUpdated}")
@@ -48,6 +46,7 @@ class RecentWinsViewModel @Inject constructor(var repository: RecentWinsReposito
                         override fun onSuccess(data: MatchResponse) {
                             _isViewLoading.value = false
                             if (data.count == 0 ){
+                                DLog.dLog("Empty Data count = 0")
                                 _isEmptyList.value = true
                             } else {
                                 _matches.value = data
@@ -60,7 +59,8 @@ class RecentWinsViewModel @Inject constructor(var repository: RecentWinsReposito
                             }
                         }
                         override fun onError(error: String) {
-
+                            _isViewLoading.value = false
+                            _onMessageError.value = error
                         }
 
                     })
@@ -99,7 +99,11 @@ class RecentWinsViewModel @Inject constructor(var repository: RecentWinsReposito
                 }
             }
         }
-     tableList.sortByDescending { it.won}
+
+        //If the number of won games is same for more than 1 team
+        //Sort the teams by less number of loss.
+        tableList.sortBy { it.lost}
+        tableList.sortByDescending { it.won}
     }
 
     private fun updateWin(
@@ -143,7 +147,6 @@ class RecentWinsViewModel @Inject constructor(var repository: RecentWinsReposito
         val dateNow = Date()
         var toDate = dateNow
         if (season.endDate < dateNow) {
-            DLog.dLog("getDateRange : Season is not ongoing")
             toDate = season.endDate
         }
         val calendar = Calendar.getInstance()

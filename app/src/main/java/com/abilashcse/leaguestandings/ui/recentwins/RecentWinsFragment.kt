@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abilashcse.leaguestandings.MainActivity
@@ -64,11 +66,12 @@ class RecentWinsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.table.observe(viewLifecycleOwner, tableObserver())
+        viewModel.onMessageError.observe(viewLifecycleOwner, errorObserver())
+        viewModel.isEmptyList.observe(viewLifecycleOwner, emptyListObserver())
         viewModel.getRecentStatus(MainActivity.COMPETITION_ID)
     }
 
-    private fun tableObserver(): (t: ArrayList<Table>) -> Unit =
-        {
+    private fun tableObserver(): (t: ArrayList<Table>) -> Unit =  {
             DLog.dLog(LOG_TAG, "table size = ${it.size}")
             recentWinTableAdapter = RecentWinTableAdapter(it)
             mainFragmentView.message.text = viewModel.teams.value?.competition?.name ?: ""
@@ -77,5 +80,18 @@ class RecentWinsFragment : Fragment() {
             mainFragmentView.dividerLine.visibility = View.VISIBLE
             mainFragmentView.progressLoader.visibility = View.GONE
         }
+
+    private fun errorObserver(): (t: Any) -> Unit = {
+        val errorMessage:String = it as String
+        DLog.error(LOG_TAG,"Error... $errorMessage")
+        mainFragmentView.progressLoader.visibility = View.GONE
+        Toast.makeText(context, "Error while fetching data... $errorMessage", Toast.LENGTH_LONG).show()
+    }
+
+    private fun emptyListObserver(): (t: Boolean) -> Unit = {
+        DLog.error(LOG_TAG,"Empty List")
+        mainFragmentView.progressLoader.visibility = View.GONE
+        Toast.makeText(context, "Empty data...", Toast.LENGTH_LONG).show()
+    }
 
 }
